@@ -40,5 +40,3 @@ cmake_install.cmake
 Makefile
 compile_commands.json
 CMakeCache.txt
-
-Libraries/toml-f/**
