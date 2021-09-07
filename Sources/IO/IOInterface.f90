@@ -26,7 +26,7 @@ contains
 
         call read_chemistry_inputs(root, chem)
 
-        close(fd)
+        close (fd)
 
         deallocate (root)
     end subroutine
@@ -134,4 +134,23 @@ contains
             print *, "open file name", file_name, "failed"
         end if
     end function
+
+    subroutine read_grid_file(file_name, x, y, z, dely)
+        character(len=*), intent(in) :: file_name
+        real(real64), allocatable, intent(inout), dimension(:, :, :) :: x, y, z, dely
+        integer :: fd, i, j, k
+        integer :: nx, ny, nz
+
+        fd = open_file(file_name)
+        read(fd, *) nx, ny, nz
+
+        do k = 1, nz
+            do j=1, ny
+                do i=1, nx
+                    read(fd, *) x(i, j, k), y(i, j, k), z(i, j, k), dely(i, j, k)
+                end do 
+            end do 
+        end do 
+
+    end subroutine
 end module

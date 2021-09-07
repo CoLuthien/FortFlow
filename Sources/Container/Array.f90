@@ -22,7 +22,7 @@ module ArrayBase
         procedure :: move_array3
     end interface
 
-    interface Array3D
+    interface Array3
         procedure :: make_array3 ! copy size and allocate same shape
         procedure :: make_array3_size
         procedure :: make_array3_move
