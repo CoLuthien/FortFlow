@@ -8,7 +8,6 @@ module ArrayBase
     type :: Array2
         integer :: m_size(2) ! a vector to represent array dimension
         real(real64), allocatable :: m_data(:, :)
-    contains
     end type Array2
 
     type :: Array3
@@ -24,10 +23,10 @@ module ArrayBase
     end interface
 
     interface Array3D
-        module procedure :: make_array3 ! copy size and allocate same shape
-        module procedure :: make_array3_size
-        module procedure :: make_array3_move
-        module procedure :: make_array3_bound
+        procedure :: make_array3 ! copy size and allocate same shape
+        procedure :: make_array3_size
+        procedure :: make_array3_move
+        procedure :: make_array3_bound
     end interface
 
 
