@@ -3,8 +3,39 @@ module Globals
     use :: Metrics
     implicit none
 
+    type :: ControlInputs
+        character(len=:), allocatable :: case_name
+        character(len=:), allocatable :: grid_file
+        integer :: iter_end, write_interval
+        integer :: n_spc
+        integer :: nx, ny, nz ! redundant but for convenience
+        logical :: restart = .false.
+    end type
+
+    type :: NumericalInputs
+        real(real64) :: CFL, machine_epsilon = 1.d-12, rel_eps, abs_eps
+        ! scheme dependent variables
+        real(real64) :: eps, theta
+    end type
+
+    type :: ChemistryInputs
+        character(len=:), allocatable :: thermo_table, trans_table, reaction_table ! name of input data files
+    end type
+
+    type :: FlowMetricsInputs
+        real(real64) :: mach, p, t
+        character(len=10), allocatable :: name(:)
+        real(real64), allocatable :: value(:)
+        real(real64) :: length_scale, cdl, ctk, ctw, kappa
+    end type
+
+
     type(FlowMetrics) :: inflow_state, inflow_state_nd ! add as you need
     type(ChemicalMetrics) :: chem_state
+
+    type(ControlInputs) :: ctrl_var
+    type(NumericalInputs) :: num_var
+
 
     ! Flow Field datas that are identical for all flow field in same case
     real(real64) :: length_scale, cdl, ctk, ctw, kappa

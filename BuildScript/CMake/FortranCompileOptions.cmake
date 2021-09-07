@@ -43,6 +43,15 @@ set(DEFAULT_COMPILE_DEFINITIONS
 
 set(DEFAULT_COMPILE_OPTIONS)
 
+if (CMAKE_Fortran_COMPILER_ID MATCHES "NVHPC")
+    set(DEFAULT_COMPILE_OPTIONS ${DEFAULT_COMPILE_OPTIONS}
+    -Mbackslash
+    )
+
+endif()
+
+
+
 #
 # Linker options
 #

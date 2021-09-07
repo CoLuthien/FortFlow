@@ -35,15 +35,19 @@ if (NOT CMAKE_BUILD_TYPE)
 elseif (CMAKE_BUILD_TYPE MATCHES "Debug")
     add_definitions(-DDEBUG)
 endif()
-message(STATUS "CMake build type: ${CMAKE_BUILD_TYPE}")
 
+
+
+# Compile options
+include(BuildScript/CMake/FortranCompileOptions.cmake)
+set(CMAKE_Fortran_FLAGS "${CMAKE_Fortran_FLAGS} ${DEFAULT_COMPILE_OPTIONS}")
 
 # Add submodules
 include(BuildScript/CMake/AddSubmodules.cmake)
 
-# Compile options
-include(BuildScript/CMake/FortranCompileOptions.cmake)
 
+message(STATUS "CMake build type: ${CMAKE_BUILD_TYPE}")
+message(STATUS ${CMAKE_Fortran_FLAGS})
 
 
 

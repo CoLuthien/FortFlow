@@ -1,22 +1,20 @@
 program HelloCFD
     use, intrinsic :: iso_fortran_env
     use :: Metrics
+    use :: Globals
     use :: tomlf
     use :: IOInterface
     implicit none
 
     type(FlowMetrics) :: fuel_injection
-    type(ControlVars) :: ctrl_vars
-    type(NumericalVars) :: num_vars
-    type(FlowMetricsCommon) :: flow_cmn
+    type(ControlInputs) :: ctrl_vars
+    type(NumericalInputs) :: num_vars
+    type(FlowMetricsInputs) :: flow
+    type(ChemistryInputs) :: chem
 
     type(toml_table), allocatable :: tb
     integer :: fd
 
-    open (newunit=fd, file="test-case.toml")
-
-    call toml_parse(tb, fd)
-
-    call read_input_table("test-case.toml", )
-
+    call read_input_file("test-case.toml", ctrl_var, num_vars, flow, chem) 
+    print*, ctrl_var%grid_file
 end program

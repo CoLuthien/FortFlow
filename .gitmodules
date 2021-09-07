@@ -1,4 +1,4 @@
 [submodule "Libraries/toml-f"]
 	path = Libraries/toml-f
 	url = https://github.com/toml-f/toml-f
-	ignore = dirty
+	ignore = all

@@ -16,7 +16,7 @@ set(root_dir ${CMAKE_CURRENT_SOURCE_DIR}/../..)
 if (USE_CUDA)
     file(GLOB_RECURSE sources
         ${CMAKE_CURRENT_SOURCE_DIR}/*.f90
-        ${CMAKE_CURRENT_SOURCE_DIR}/CUDA/*.f90)
+        ${CMAKE_CURRENT_SOURCE_DIR}/CUDA/*.cuf)
 else()
     file(GLOB_RECURSE sources
         ${CMAKE_CURRENT_SOURCE_DIR}/*.f90)
