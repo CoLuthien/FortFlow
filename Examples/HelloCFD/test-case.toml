@@ -1,0 +1,42 @@
+case = "test"
+
+[ControlVariables]
+case_name = "test-case"
+chem_model = "jachi"
+n_spc = 13
+iter_end = 1000
+nx = 32
+ny = 17
+nz = 27
+restart = false
+write_interval = 1000
+
+[NumericalVariables]
+absolute_epsilone = 1e-14
+cfl = 1.0
+machine_epsilone = 1e-16
+relative_epsilone = 1e-15
+[NumericalVariables.UserDefined]# dummy table for future use
+
+[SchemeVariables]
+epsilone = 0.4 # for roe's average
+theta = 0.25 # for muscl minmod limiter
+
+[FlowFieldVariables]
+# same property for all flow fields
+length_scale = 3.0 # as name meant
+cdl = 1.0 # computation domain length x y z direction
+ctk = -3.0 # coefficient for calculating initial turbulent viscosity coefficient
+ctw = 5.0 #  coefficient for calculating initial specific turbulent kinetic energy disspation rate
+#kappa = 1.01 # unknown
+
+[FlowFieldVariables.Inflow] # allways read by library
+mach = 4.0 # in flow mach number
+pressure = 1e6 # inflow pressure [Pa], 1 bar
+temp = 1200.0 # inflow temperature[K]
+#mixture name
+mixture.name = ["N2", "O2", "H2", "NO", "OH", "NO2", "HNO", "HO2", "H2O", "H2O2", "N", "O", "H"] 
+# mixture mole for each species
+mixture.value = [3.76d0 ,1.d0 ,2.d0 ,0.d0 ,0.d0 ,0.d0,0.d0,0.d0,0.d0,0.d0,0.d0,0.d0 ,0.d0]
+
+# now read by user

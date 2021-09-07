@@ -50,11 +50,10 @@ target_compile_options(${target}
 )
 
 target_link_libraries(${target}
-    PRIVATE
+    ${SUBMODULES}
 
     PUBLIC
-    ${DEFAULT_LINKER_OPTIONS}
-	${DEFAULT_LIBRARIES}
+    PRIVATE
 
     INTERFACE
 )

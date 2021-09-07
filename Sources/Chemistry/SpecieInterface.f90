@@ -4,10 +4,10 @@ module SpecieInterface
 
     type, abstract :: Specie
         ! input properties
-        real(real64) :: molar_weight  ![g/mol]
+        real(real64) :: molar_weight  ![kg/mol]
         real(real64) :: molar_hof ! [KJ/mol] @ 0K, table could be implementation dependent
         real(real64) :: molar_diam ! [Angstrom] molecular diameter
-        real(real64) :: char_temp ! charateristic temperature
+        real(real64) :: char_temp ! charateristic temperature for molecular 
 
         ! calculated properties
         real(real64) :: molar_weight_nd

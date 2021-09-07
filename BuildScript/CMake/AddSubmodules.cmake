@@ -1,6 +1,5 @@
 
 
-set (DEFAULT_LIBRARIES)
 find_package(Git QUIET)
 if(GIT_FOUND AND EXISTS "${PROJECT_SOURCE_DIR}/.git")
 # Update submodules as needed
@@ -18,7 +17,10 @@ endif()
 
 # Add submodule as you need
 add_subdirectory(Libraries/toml-f)
+set (TOML toml-f-lib)
 
-set (DEFAULT_LIBRARIES ${DEFAULT_LIBRARIES}
-    toml-f-lib
+set (SUBMODULES
+    PUBLIC
+    PRIVATE
+    ${TOML}
 )

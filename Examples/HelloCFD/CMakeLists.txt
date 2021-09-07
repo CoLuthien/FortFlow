@@ -12,6 +12,7 @@ file(GLOB sources
 # Build executable
 add_executable(${target}
     ${sources})
+    
 target_include_directories(${target}
     PRIVATE
     ${CMAKE_Fortran_MODULE_DIRECTORY}
@@ -38,6 +39,7 @@ target_link_libraries(${target}
     PUBLIC
     FortFlow
     PRIVATE
+    ${SUBMODULES}
     ${DEFAULT_LINKER_OPTIONS}
     )
 

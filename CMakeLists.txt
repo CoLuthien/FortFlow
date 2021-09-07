@@ -18,7 +18,7 @@ set(LIBRARY_DIR ${CMAKE_CURRENT_SOURCE_DIR}/Libraries)
 set(CMAKE_Fortran_MODULE_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/build/mod)
 
 # Set output directories
-set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${PROJECT_BINARY_DIR}/bin)
+#set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${PROJECT_BINARY_DIR}/bin)
 set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${PROJECT_BINARY_DIR}/lib)
 set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${PROJECT_BINARY_DIR}/lib)
 set(DEFAULT_CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_LIBRARY_OUTPUT_DIRECTORY})
@@ -42,7 +42,7 @@ message(STATUS "CMake build type: ${CMAKE_BUILD_TYPE}")
 include(BuildScript/CMake/AddSubmodules.cmake)
 
 # Compile options
-include(Builds/CMake/FortranCompileOptions.cmake)
+include(BuildScript/CMake/FortranCompileOptions.cmake)
 
 
 
