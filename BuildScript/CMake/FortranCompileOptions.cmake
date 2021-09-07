@@ -45,7 +45,7 @@ set(DEFAULT_COMPILE_OPTIONS)
 
 if (CMAKE_Fortran_COMPILER_ID MATCHES "NVHPC")
     set(DEFAULT_COMPILE_OPTIONS ${DEFAULT_COMPILE_OPTIONS}
-    -Mbackslash
+    "-Mbackslash"
     )
 
 endif()
@@ -58,10 +58,10 @@ endif()
 
 set(DEFAULT_LINKER_OPTIONS)
 
-# Use pthreads on mingw and linux
-if(CMAKE_CXX_COMPILER_ID MATCHES "GNU" OR CMAKE_SYSTEM_NAME MATCHES "Linux")
+# Use pthreads on linux
+if(CMAKE_SYSTEM_NAME MATCHES "Linux")
     set(DEFAULT_LINKER_OPTIONS
-        -pthread
+        -lpthread
     )
 endif()
 

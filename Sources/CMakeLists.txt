@@ -23,15 +23,9 @@ else()
 endif()
 
 # Build library
-if (USE_CUDA)
-    cuda_add_library(${target} ${sources} STATIC
-        OPTIONS ${CUDA_TARGET_OPTIONS}
-    )
-else()
-    add_library(${target} STATIC
-        ${sources}
-        )
-endif()
+add_library(${target} STATIC
+    ${sources}
+)
 
 # Project options
 #set_target_properties(${target}
@@ -50,13 +44,15 @@ target_compile_options(${target}
 )
 
 target_link_libraries(${target}
-    ${SUBMODULES}
-
     PUBLIC
+    ${SUBMODULES}
+    ${DEFAULT_LINKER_OPTIONS}
     PRIVATE
 
     INTERFACE
 )
+
+message(${sources})
 
 # Install
 install(TARGETS ${target} DESTINATION lib)
