@@ -6,12 +6,12 @@ cmake_policy(SET CMP0063 NEW) # visibility
 list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/Builds/CMake")
 
 # Declare project
-project(FortFlow LANGUAGES Fortran C)
+project(FortFlow LANGUAGES CUDA Fortran C)
 
 # CUDA
 option(USE_CUDA "Use CUDA features" OFF)
 option(USE_OMP "Use OMP features" ON)
-#find_package(Threads)
+find_package(Threads)
 
 # Useful paths
 set(LIBRARY_DIR ${CMAKE_CURRENT_SOURCE_DIR}/Libraries)
@@ -35,9 +35,7 @@ elseif (CMAKE_BUILD_TYPE MATCHES "Debug")
 endif()
 
 if (USE_CUDA)
-    set(CUDA_LINK_LIBRARIES_KEYWORD PUBLIC)
-    set(CUDA_SEPARABLE_COMPILATION OFF)
-    set(CUDA_STANDARD 17)
+    find_package(CUDA)
     enable_language(CUDA)
 endif()
 
@@ -52,7 +50,6 @@ include(BuildScript/CMake/AddSubmodules.cmake)
 
 
 message(STATUS "CMake build type: ${CMAKE_BUILD_TYPE}")
-message(STATUS ${CMAKE_Fortran_FLAGS})
 
 
 

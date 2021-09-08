@@ -211,7 +211,7 @@ contains
         add%x = vec%x - real(scalar, real64)
         add%y = vec%y - real(scalar, real64)
         add%z = vec%z - real(scalar, real64)
-    end function iscalar_vec_sub
+    end function
 
     pure elemental function dotproduct(vec1, vec2) result(dot)
         !$omp declare simd(dotproduct) uniform(vec1, vec2)
@@ -222,7 +222,6 @@ contains
               vec1%z * vec2%z
     end function dotproduct
 
-    !DIR$ ATTRIBUTES INLINE :: crossproduct
     pure elemental function crossproduct(vec1, vec2) result(cross)
         !$omp declare simd(crossproduct) uniform(vec1, vec2)
         type(Vector3), intent(in) :: vec1, vec2

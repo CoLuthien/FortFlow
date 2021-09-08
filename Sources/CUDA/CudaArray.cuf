@@ -5,7 +5,57 @@ module CudaArray
 
     type, extends(Array3) :: CudaArray3
         real(real64), allocatable, device :: m_device_data(:, :, :)
+    contains
+
     end type
 
+    interface CudaArray3
+        procedure :: cuda_make_array3 ! copy size and allocate same shape
+        procedure :: cuda_make_array3_size
+        procedure :: cuda_make_array3_move
+        procedure :: cuda_make_array3_bound
+    end interface
+
+contains
+
+    function cuda_make_array3(from) result(to)
+        class(Array3), intent(in) :: from
+        type(CudaArray3) :: to
+        to%m_size = from%m_size
+        allocate (to%m_data, mold=from%m_data)
+        allocate (to%m_device_data, mold=from%m_data)
+    end function
+
+    function cuda_make_array3_size(i, j, k) result(arr)
+        integer, intent(in) :: i, j, k
+        type(CudaArray3) :: arr
+        arr%m_size = [i, j, k]
+        allocate (arr%m_data(i, j, k))
+        allocate (arr%m_device_data(i, j, k))
+    end function
+
+    function cuda_make_array3_move(from) result(to)
+        real(real64), intent(inout), allocatable :: from(:, :, :)
+        type(CudaArray3) :: to
+        to%m_size = size(from)
+
+        call move_alloc(from, to%m_data)
+        allocate (to%m_device_data, mold=to%m_data)
+    end function
+
+    function cuda_make_array3_bound(lb, ub) result(arr)
+        integer, intent(in) :: lb(3), ub(3)
+        integer :: resolution(3)
+        type(CudaArray3) :: arr
+
+        resolution = ub(:) - lb(:) + 1
+
+        arr%m_size = resolution
+
+        allocate (arr%m_data(lb(1):ub(1), &
+                             lb(2):ub(2), &
+                             lb(3):ub(3)))
+        allocate (arr%m_device_data, mold=arr%m_data)
+    end function
 
 end module

@@ -5,6 +5,7 @@ set(target HelloCFD)
 include_directories(${CMAKE_CURRENT_SOURCE_DIR})
 
 
+
 # Sources
 file(GLOB sources
     ${CMAKE_CURRENT_SOURCE_DIR}/*.f90)
@@ -17,6 +18,8 @@ target_include_directories(${target}
     PRIVATE
     ${CMAKE_Fortran_MODULE_DIRECTORY}
 )
+set_target_properties(${target} PROPERTIES POSITION_INDEPENDENT_CODE ON)
+set_target_properties(${target} PROPERTIES CUDA_SEPARABLE_COMPILATION ON)
 
 # Project options
 #set_target_properties(${target}
@@ -27,9 +30,7 @@ target_include_directories(${target}
 # Compile options
 target_compile_options(${target}
     PRIVATE
-
     PUBLIC
-    ${DEFAULT_COMPILE_OPTIONS}
     INTERFACE
 )
 

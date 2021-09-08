@@ -45,7 +45,7 @@ set(DEFAULT_COMPILE_OPTIONS)
 
 if (CMAKE_Fortran_COMPILER_ID MATCHES "NVHPC")
     set(DEFAULT_COMPILE_OPTIONS ${DEFAULT_COMPILE_OPTIONS}
-    "-Mbackslash"
+    "-Mbackslash -Mpreprocess"
     )
 
 endif()
@@ -58,9 +58,15 @@ endif()
 
 set(DEFAULT_LINKER_OPTIONS)
 
+if(USE_CUDA) 
+    set(DEFAULT_LINKER_OPTIONS ${DEFAULT_LINKER_OPTIONS}
+    "-Mcuda"
+    )
+endif()
+
 # Use pthreads on linux
 if(CMAKE_SYSTEM_NAME MATCHES "Linux")
-    set(DEFAULT_LINKER_OPTIONS
+    set(DEFAULT_LINKER_OPTIONS ${DEFAULT_LINKER_OPTIONS}
         -lpthread
     )
 endif()
@@ -71,11 +77,6 @@ if(CMAKE_BUILD_TYPE MATCHES Debug AND CMAKE_Fortran_COMPILER_ID MATCHES Intel)
     set(DEFAULT_COMPILE_OPTIONS ${DEFAULT_COMPILE_OPTIONS}
         -g
         -O0
-    )
-
-    set(DEFAULT_LINKER_OPTIONS ${DEFAULT_LINKER_OPTIONS}
-        -fprofile-arcs
-        -ftest-coverage
     )
 endif()
 

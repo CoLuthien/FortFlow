@@ -29,9 +29,7 @@ module ArrayBase
         procedure :: make_array3_bound
     end interface
 
-
 contains
-
 
     pure function make_array2(from) result(to)
         class(Array2), intent(in) :: from
@@ -78,9 +76,6 @@ contains
                              lb(2):ub(2), &
                              lb(3):ub(3)))
     end function
-
-
-
 
     pure subroutine move_array2(to, from)
         class(Array2), allocatable, intent(inout) :: from
