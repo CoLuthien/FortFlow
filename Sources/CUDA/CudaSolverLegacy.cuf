@@ -1,0 +1,10 @@
+module CudaSolverLegacy
+    use, intrinsic :: iso_fortran_env
+    use :: SolverInterface
+    use :: CudaCellMetrics
+    implicit none
+
+    type, extends(Solver3) :: CudaLegacySolver3
+        type(CudaCellMetric3) :: m_metrics
+    end type
+end module

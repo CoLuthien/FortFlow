@@ -1,0 +1,11 @@
+module CudaArray
+    use, intrinsic :: iso_fortran_env
+    use :: ArrayBase
+    implicit none
+
+    type, extends(Array3) :: CudaArray3
+        real(real64), allocatable, device :: m_device_data(:, :, :)
+    end type
+
+
+end module

@@ -1,20 +1,22 @@
-module CellMetrics 
+module CellMetrics
     use, intrinsic :: iso_fortran_env
     use :: ArrayBase
-
     implicit none
+
 
     type :: CellMetric3
         integer :: m_resolution(3)
-        ! all member only used in calculation domain
-        class(Array3), allocatable :: aj
-        class(Array3), allocatable :: sx, sy, sz
-        class(Array3), allocatable :: ex, ey, ez
-        class(Array3), allocatable :: cx, cy, cz
-        class(Array3), allocatable :: sxc, syc, szc
-        class(Array3), allocatable :: exc, eyc, ezc
-        class(Array3), allocatable :: cxc, cyc, czc, dely
+        type(Array3), allocatable :: aj
+        type(Array3), allocatable :: sx, sy, sz
+        type(Array3), allocatable :: ex, ey, ez
+        type(Array3), allocatable :: cx, cy, cz
+        type(Array3), allocatable :: sxc, syc, szc
+        type(Array3), allocatable :: exc, eyc, ezc
+        type(Array3), allocatable :: cxc, cyc, czc, dely
     end type
+
+
+
 contains 
 
     function init_cell_metrics(x, y, z, resolution) result(self)

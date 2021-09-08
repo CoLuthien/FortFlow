@@ -1,0 +1,17 @@
+module CudaCellMetrics
+    use, intrinsic :: iso_fortran_env
+    use :: CudaArray
+    implicit none
+
+    type :: CudaCellMetric3
+        integer :: m_resolution(3)
+        type(CudaArray3), allocatable :: aj
+        type(CudaArray3), allocatable :: sx, sy, sz
+        type(CudaArray3), allocatable :: ex, ey, ez
+        type(CudaArray3), allocatable :: cx, cy, cz
+        type(CudaArray3), allocatable :: sxc, syc, szc
+        type(CudaArray3), allocatable :: exc, eyc, ezc
+        type(CudaArray3), allocatable :: cxc, cyc, czc, dely
+    end type
+
+end module
